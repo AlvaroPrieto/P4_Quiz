@@ -55,12 +55,13 @@ exports.showCmd = (rl,id) => {
 exports.testCmd = (rl,id) => {
     if(typeof id === "undefined"){
 		errorlog(`falta el parametro id.`);
+		rl.prompt();
 	} else{
 		try{
 			const quiz = model.getByIndex(id);
 			rl.question(colorize(quiz.question + ' ','red'), answer => {
 					log('Su respuesta es:');
-					if(quiz.answer.toUpperCase() == answer.toUpperCase().trim()){
+					if(quiz.answer.toUpperCase() === answer.toUpperCase().trim()){
 						biglog('Correcta', 'green');
 					} else{
 						biglog('Incorrecta', 'red');
@@ -69,6 +70,7 @@ exports.testCmd = (rl,id) => {
 			});
 		} catch(error) {
 			errorlog(error.message);
+			rl.prompt();
 		}
 	}
 	rl.prompt();
