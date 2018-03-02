@@ -58,14 +58,14 @@ exports.testCmd = (rl,id) => {
 	} else{
 		try{
 			const quiz = model.getByIndex(id);
-			log(`[${colorize(id, 'magenta')}]: ${quiz.question}`);
-			rl.question(colorize('Su respuesta es: ','red'), answer => {
+			rl.question(colorize(quiz.question + ' ','red'), answer => {
+					log('Su respuesta es:');
 					if(quiz.answer.toUpperCase() == answer.toUpperCase().trim()){
 						biglog('Correcta', 'green');
 					} else{
 						biglog('Incorrecta', 'red');
 					}
-					rl.prompt();
+					//rl.prompt();
 			});
 		} catch(error) {
 			errorlog(error.message);
