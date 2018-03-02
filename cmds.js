@@ -59,8 +59,8 @@ exports.testCmd = (rl,id) => {
 		try{
 			const quiz = model.getByIndex(id);
 			log(`[${colorize(id, 'magenta')}]: ${quiz.question}`);
-			rl.question(colorize(' Introduzca una respuesta ','red'), answer => {
-					if(quiz.answer === answer){
+			rl.question(colorize('Su respuesta es: ','red'), answer => {
+					if(quiz.answer.toUpperCase() == answer.toUpperCase().trim()){
 						biglog('Correcta', 'green');
 					} else{
 						biglog('Incorrecta', 'red');
