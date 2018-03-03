@@ -59,11 +59,12 @@ exports.testCmd = (rl,id) => {
 	} else{
 		try{
 			const quiz = model.getByIndex(id);
-			rl.question(colorize(quiz.question + ' ','red'), answer => {
-					log('Su respuesta es:');
+			rl.question(`${colorize(quiz.question + ' ','red')}`, answer => {
 					if(quiz.answer.toUpperCase() === answer.toUpperCase().trim()){
+						log("Su respuesta es correcta");
 						biglog('Correcta', 'green');
 					} else{
+						log("Su respuesta es incorrecta");
 						biglog('Incorrecta', 'red');
 					}
 					rl.prompt();
@@ -73,7 +74,6 @@ exports.testCmd = (rl,id) => {
 			rl.prompt();
 		}
 	}
-	rl.prompt();
 }
 
 exports.playCmd = (rl) => {
