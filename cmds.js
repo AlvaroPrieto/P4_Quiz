@@ -140,7 +140,7 @@ exports.playCmd = (rl) => {
 		return new Promise((resolve,reject) => {
 			
 			if(toBeResolved.length <=0){
-				console.log("SACABOOO");
+				console.log("No hay nada mas que preguntar.\nFin del examen. Aciertos:");
 				resolve();
 				return;
 			}
@@ -156,7 +156,6 @@ exports.playCmd = (rl) => {
 					resolve(playOne());
 				} else {
 					console.log('INCORRECTO.\nFin del examen. Aciertos:');
-					biglog(score,'magenta');
 					resolve();
 				}	
 			})
