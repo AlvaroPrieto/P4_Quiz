@@ -148,11 +148,11 @@ exports.playCmd = (rl) => {
 			let quiz = toBeResolved[pos];
 			toBeResolved.splice(pos,1);
 			
-			makeQuestion(rl, quiz.question)
+			makeQuestion(rl, quiz.question+'? ')
 			.then(answer => {
 				if(answer.toLowerCase().trim() === quiz.answer.toLowerCase().trim()){
 					score++;
-					console.log("CORRECTO - Lleva ',score, 'aciertos");
+					console.log("CORRECTO - Lleva ",score, "aciertos");
 					resolve(playOne());
 				} else {
 					console.log("INCORRECTO.\nFin del examen. Aciertos:");
