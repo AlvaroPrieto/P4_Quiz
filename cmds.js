@@ -133,43 +133,7 @@ exports.testCmd = (rl,id) => {
 };
 
 exports.playCmd = (rl) => {
-    let score = 0;
-	let toBeResolved = [];
-	for(i=0;i<model.getAll().length;i++){
-		toBeResolved[i]=i;
-	}
-	//console.log("tiene que salir");
-	const playOne = () => {		
-		//console.log("tiene que salir tambien");
-		if(toBeResolved.length === 0){
-			console.log("No hay nada mas que preguntar.\nFin del examen. Aciertos:");
-			biglog(score,'magenta');
-			rl.prompt();
-			return;			
-		} else {
-			let id = Math.floor(Math.random()*toBeResolved.length);
-			id2=toBeResolved[id];
-			toBeResolved.splice(id,1);
-			let quiz = model.getByIndex(id2);
-			rl.question(colorize(quiz.question + ' ','red'), resp => {
-				if(resp === quiz.answer){
-					score++;
-					console.log('CORRECTO - Lleva ',score, 'aciertos');
-					playOne();
-					rl.prompt();
-					return;
-				} else{
-					console.log('INCORRECTO.\nFin del examen. Aciertos:');
-					biglog(score,'magenta');
-					rl.prompt();
-					return;
-				}
-			});
-		}
-		
-	}
-	rl.prompt();
-	playOne();				
+    rl.prompt();
 			
 };
 
