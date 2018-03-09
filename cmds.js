@@ -152,10 +152,10 @@ exports.playCmd = (rl) => {
 			.then(answer => {
 				if(answer.toLowerCase().trim() === quiz.answer.toLowerCase().trim()){
 					score++;
-					console.log('CORRECTO - Lleva ',score, 'aciertos');
+					console.log("CORRECTO - Lleva ',score, 'aciertos");
 					resolve(playOne());
 				} else {
-					console.log('INCORRECTO.\nFin del examen. Aciertos:');
+					console.log("INCORRECTO.\nFin del examen. Aciertos:");
 					resolve();
 				}	
 			})
