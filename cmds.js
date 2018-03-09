@@ -133,8 +133,50 @@ exports.testCmd = (rl,id) => {
 };
 
 exports.playCmd = (rl) => {
-    rl.prompt();
+    let score = 0;
+	let toBeResolved = [];
+	
+	const playOne = () => {
+		return new Promise((resolve,reject) => {
 			
+			if(toBeResolved.length <=0){
+				console.log("SACABOOO");
+				resolve();
+				return;
+			}
+			let pos = Math.floor(Math.random()*toBeResolved.length);
+			let quiz = toBeResolved[pos];
+			toBeResolved.splice(pos,1);
+			
+			makeQuestion(rl, quiz.question)
+			.then(answer => {
+				if(answer.toLowerCase().trim() === quiz.answer.toLowerCase().trim()){
+					score++;
+					console.log('CORRECTO - Lleva ',score, 'aciertos');
+					resolve(playOne());
+				} else {
+					console.log('INCORRECTO.\nFin del examen. Aciertos:');
+					biglog(score,'magenta');
+					resolve();
+				}	
+			})
+		})
+	}
+	
+	models.quiz.findAll({raw: true})
+	.then(quizzes => {
+		toBeResolved = quizzes;
+	})
+	.then(() => {
+		return playOne();
+	})
+	.catch(error => {
+		console.log(error);
+	})
+	.then(() => {
+		biglog(score,'magenta');
+		rl.prompt();
+	})
 };
 
 exports.deleteCmd = (rl,id) => {
