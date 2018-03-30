@@ -20,6 +20,7 @@ exports.helpCmd = (socket, rl) => {
 exports.quitCmd = (socket, rl) => {
     rl.close();
 	socket.end();
+	//rl.prompt();
 }
 
 const makeQuestion = (rl,text) => {
@@ -228,8 +229,7 @@ exports.editCmd = (socket, rl,id) => {
 	});
 };
 
-exports.creditsCmd = (rl) => {
-    log(socket, 'Autores de la practica:');
+exports.creditsCmd = (socket, rl) => {
     log(socket, 'ALVARO','green');
 	rl.prompt();
 }
